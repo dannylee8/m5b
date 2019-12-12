@@ -1,2 +1,4 @@
 # backend
-A Ruby on Rails backend skeleton
+Ruby 2.6.1p33
+Rails 6.0.1
+Pg 1.1.4
