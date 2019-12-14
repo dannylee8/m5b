@@ -12,26 +12,81 @@
 
 require 'faker'
 
-5.times do 
+puts "Destroying UserRoles."
+UserRole.destroy_all
+puts "Destroying Positions."
+Position.destroy_all
+puts "Destroying Roles"
+Role.destroy_all
+puts "Destroying Teams"
+Team.destroy_all
+puts "Destroying Users"
+User.destroy_all
+
+puts "Creatng Users"
+15.times do 
 	User.create(
-		name: Faker::Name.name,
-		email_address: Faker::Internet.email
+		name: Faker::Name.first_name,
+		email_address: Faker::Internet.free_email
 	)
 end
+puts "Users: #{User.all.length}"
 
-5.times do |i|
+puts "Creatng Teams"
+15.times do |i|
 	Team.create(
 		name: Faker::Company.name,
-		website: Faker::Internet.url,
+		website: Faker::Internet.domain_name,
 		admin: i
 	)
 end
+puts "Teams: #{Team.all.length}"
 
-5.times do
-	Position.create(
-		name: Faker::Job.title,
-		role: Faker::Job.position,
-		user_id: rand(1..5),
-		team_id: rand(1..5)
+roles = [
+	"developer",
+	"product owner",
+	"project manager",
+	"scrum master",
+	"architect",
+	"ux/ui",
+	"devops",
+	"qa"
+]
+
+puts "Creating Roles"
+
+roles.each do |role|
+	Role.create(
+		name: role
 	)
 end
+puts "Roles: #{Role.all.length}"
+
+puts "Creating UserRoles"
+
+15.times do 
+	r_id = rand(1..8)  
+	UserRole.create(
+		user_id: rand(1..15),
+		role_id: r_id,
+		name: Role.find_by(id: r_id).name,
+		years_exp: rand(1..10)
+	)
+end
+puts "UserRoles: #{UserRole.all.length}"
+
+puts "Creating Positions"
+
+15.times do
+	r_id = rand(1..8)
+	Position.create(
+		name: Role.find_by(id: r_id).name,
+		role_id: r_id,
+		user_id: rand(1..15),
+		team_id: rand(1..15)
+	)
+end
+puts "Positions: #{Position.all.length}"
+
+puts "Success! 😎"
+

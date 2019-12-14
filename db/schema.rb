@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_234202) do
+ActiveRecord::Schema.define(version: 2019_12_14_200335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,17 @@ ActiveRecord::Schema.define(version: 2019_12_10_234202) do
     t.bigint "user_id"
     t.bigint "team_id"
     t.string "name"
-    t.string "role"
+    t.string "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_positions_on_team_id"
     t.index ["user_id"], name: "index_positions_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -32,6 +38,17 @@ ActiveRecord::Schema.define(version: 2019_12_10_234202) do
     t.integer "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.string "name"
+    t.integer "years_exp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +60,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_234202) do
 
   add_foreign_key "positions", "teams"
   add_foreign_key "positions", "users"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
