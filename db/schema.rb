@@ -16,14 +16,13 @@ ActiveRecord::Schema.define(version: 2019_12_14_200335) do
   enable_extension "plpgsql"
 
   create_table "positions", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "team_id"
     t.string "name"
-    t.string "role_id"
+    t.integer "user_id"
+    t.integer "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_positions_on_team_id"
-    t.index ["user_id"], name: "index_positions_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 2019_12_14_200335) do
   end
 
   add_foreign_key "positions", "teams"
-  add_foreign_key "positions", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
