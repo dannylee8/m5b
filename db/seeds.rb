@@ -25,9 +25,12 @@ User.destroy_all
 
 puts "Creatng Users"
 15.times do 
+	name = Faker::Name.first_name
+	email = name + "@gmail.com"
+
 	User.create(
-		name: Faker::Name.first_name,
-		email_address: Faker::Internet.free_email
+		name: name,
+		email_address: email
 	)
 end
 puts "Users: #{User.all.length}"
@@ -60,6 +63,7 @@ roles.each do |role|
 		name: role
 	)
 end
+
 puts "Roles: #{Role.all.length}"
 
 puts "Creating UserRoles"
@@ -73,6 +77,7 @@ puts "Creating UserRoles"
 		years_exp: rand(1..10)
 	)
 end
+
 puts "UserRoles: #{UserRole.all.length}"
 
 puts "Creating Positions"
@@ -87,6 +92,19 @@ puts "Creating Positions"
 	)
 end
 puts "Positions: #{Position.all.length}"
-
+puts "---------------------------"
+puts
 puts "Success! 😎"
+puts
+puts "---------------------------"
+puts "No Roles:"
+noRoles = User.all.filter { 
+	|u| u.roles.count == 0 }.map { 
+	|u| puts u.email_address }
+puts "---------------------------"
+puts "Roles:"
+hasRoles = User.all.filter { 
+	|u| u.roles.count > 1 }.sort.reverse.map { 
+	|u| u.email_address + " (" + u.roles.count.to_s + ")"}
 
+	puts hasRoles

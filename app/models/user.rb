@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-	has_many :positions
-	has_many :teams, through: :positions
-	has_many :user_roles
-	has_many :roles, through: :user_roles
+	has_many :positions, :dependent => :destroy
+	has_many :teams, through: :positions, :dependent => :destroy
+	has_many :user_roles, :dependent => :destroy
+	has_many :roles, through: :user_roles, :dependent => :destroy
 
 	validates :name, 	presence: true,
 										length: { minimum: 2 }
