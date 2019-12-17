@@ -107,4 +107,4 @@ hasRoles = User.all.filter {
 	|u| u.roles.count > 1 }.sort.reverse.map { 
 	|u| u.email_address + " (" + u.roles.count.to_s + ")"}
 
-	puts hasRoles
+puts hasRoles
