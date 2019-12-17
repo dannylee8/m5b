@@ -26,7 +26,7 @@ User.destroy_all
 puts "Creatng Users"
 15.times do 
 	name = Faker::Name.first_name
-	email = name + "@gmail.com"
+	email = name.downcase + "@gmail.com"
 
 	User.create(
 		name: name,

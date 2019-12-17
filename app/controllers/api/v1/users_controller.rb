@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
 	def create
 		user = User.create!(user_params)
 		if user.valid?
-				render json: :user
+				render json: user
 		else
 				render json: {errors: user.errors.full_messages}
 		end
@@ -22,13 +22,13 @@ class Api::V1::UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
-		render :nothing => true, :status => 204 
+		render :nothing => true, :status => 204
 	end
 
 	private
 
   def user_params
     # whitelist params
-    params.permit(:user_id, :email_address)
+    params.permit(:name, :email_address)
 	end
 end
