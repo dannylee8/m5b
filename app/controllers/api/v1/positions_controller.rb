@@ -19,10 +19,25 @@ class Api::V1::PositionsController < ApplicationController
     render json: @position
 	end
 
+	def update
+		if @position.update(position_params)
+			render json: position
+		else
+			render json: {errors: position.errors.full_messages}
+		end
+	end
+
+	def destroy
+		@position = Position.find(params[:id])
+		@position.destroy
+		render :nothing => true, :status => 204
+	end
+
+
 	private
 
   def position_params
     # whitelist params
-    params.permit(:user_id, :team_id, :name, :role)
+    params.permit(:team_id, :name, :user_id, :role_id)
 	end
 end

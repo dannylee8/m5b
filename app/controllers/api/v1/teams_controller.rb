@@ -19,6 +19,20 @@ class Api::V1::TeamsController < ApplicationController
     render json: @team
 	end
 
+	def update
+		if @team.update(team_params)
+			render json: team
+		else
+			render json: {errors: team.errors.full_messages}
+		end
+	end
+
+	def destroy
+		@team = Team.find(params[:id])
+		@team.destroy
+		render :nothing => true, :status => 204
+	end
+
 	private
 
   def team_params

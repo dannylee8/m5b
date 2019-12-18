@@ -19,6 +19,14 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
 	end
 
+	def update
+		if @user.update(user_params)
+			render json: user
+		else
+			render json: {errors: user.errors.full_messages}
+		end
+	end
+
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
