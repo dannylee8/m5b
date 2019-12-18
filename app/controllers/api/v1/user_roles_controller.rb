@@ -9,10 +9,19 @@ class Api::V1::UserRolesController < ApplicationController
     render json: @userRole
 	end
 
+  def create
+		userRole = UserRole.create!(userRole_params)
+		if userRole.valid?
+				render json: userRole
+		else
+				render json: {errors: userRole.errors.full_messages}
+		end
+  end
+  
 	private
 
-  def user_params
+  def userRole_params
     # whitelist params
-    params.permit(:name, :years_exp)
+    params.permit(:user_id, :role_id, :name, :years_exp)
 	end
 end
