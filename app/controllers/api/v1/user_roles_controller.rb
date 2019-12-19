@@ -20,10 +20,11 @@ class Api::V1::UserRolesController < ApplicationController
   
 
 	def update
+		@userRole = UserRole.find(params[:id])
 		if @userRole.update(userRole_params)
-			render json: userRole
+			render json: @userRole
 		else
-			render json: {errors: userRole.errors.full_messages}
+			render json: {errors: @userRole.errors.full_messages}
 		end
 	end
 
@@ -37,6 +38,6 @@ class Api::V1::UserRolesController < ApplicationController
 
   def userRole_params
     # whitelist params
-    params.permit(:user_id, :role_id, :name, :years_exp)
+    params.require(:user_role).permit(:id, :user_id, :role_id, :name, :years_exp)
 	end
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :teams, only: [:index, :show, :create, :update, :destroy]
       resources :positions, only: [:index, :show, :create, :update, :destroy]
-      resources :user_roles, only: [:index, :show, :create, :update, :destroy]
+      resources :user_roles, only: [:index, :show, :create, :patch, :update, :destroy]
       resources :roles, only: [:index, :show]
     end
   end
