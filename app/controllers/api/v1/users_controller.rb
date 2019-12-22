@@ -20,10 +20,11 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def update
+		@user = User.find(params[:id])
 		if @user.update(user_params)
-			render json: user
+			render json: @user
 		else
-			render json: {errors: user.errors.full_messages}
+			render json: {errors: @user.errors.full_messages}
 		end
 	end
 
@@ -37,6 +38,6 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     # whitelist params
-    params.permit(:name, :email_address)
+    params.require(:user).permit(:name, :id, :email_address)
 	end
 end
