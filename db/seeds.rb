@@ -100,11 +100,25 @@ puts "---------------------------"
 puts "No Roles:"
 noRoles = User.all.filter { 
 	|u| u.roles.count == 0 }.map { 
-	|u| puts u.email_address }
+	|u| u.email_address }
+puts noRoles
 puts "---------------------------"
 puts "Roles:"
 hasRoles = User.all.filter { 
 	|u| u.roles.count > 1 }.sort.reverse.map { 
 	|u| u.email_address + " (" + u.roles.count.to_s + ")"}
-
 puts hasRoles
+puts "---------------------------"
+puts "No Teams:"
+noTeams = User.all.filter {
+	|u| u.teams.count == 0 }.map {
+	|u| u.email_address }
+puts noTeams
+puts "---------------------------"
+puts "Has Teams:"
+hasTeams = User.all.filter {
+	|u| u.teams.count > 1 }.sort.reverse.map {
+	|u| u.email_address + " (" + u.teams.count.to_s + ")" }
+puts hasTeams
+puts "---------------------------"
+puts "finished"
