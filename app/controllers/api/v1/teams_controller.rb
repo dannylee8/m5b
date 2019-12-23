@@ -20,10 +20,11 @@ class Api::V1::TeamsController < ApplicationController
 	end
 
 	def update
+		@team = Team.find(params[:id])
 		if @team.update(team_params)
-			render json: team
+			render json: @team
 		else
-			render json: {errors: team.errors.full_messages}
+			render json: {errors: @team.errors.full_messages}
 		end
 	end
 
