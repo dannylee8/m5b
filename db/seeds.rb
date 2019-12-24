@@ -69,29 +69,30 @@ puts "Roles: #{Role.all.length}"
 puts "Creating UserRoles"
 
 3000.times do |i|
-	if i < 1500   
-		userID = i 
-	else
-	  userID = i - 1500
-	end
-	puts "i"
-	puts i
+	# if i < 1500   
+	# 	userID = i 
+	# else
+	#   userID = i - 1500
+	# end
+	# puts "i"
+	# puts i
 
-	puts "userID"
-	puts userID
+	# puts "userID"
+	# puts userID
 
-	if i < 1 || i % 8 == 0
-		r_id = 1
-	elsif	i < 9   
-		r_id = i 
-	else
-		r_id = i % 8
-	end
-	puts "r_id"
-	puts r_id
+	# if i < 1 || i % 8 == 0
+	# 	r_id = 1
+	# elsif	i < 9   
+	# 	r_id = i 
+	# else
+	# 	r_id = i % 8
+	# end
+	# puts "r_id"
+	# puts r_id
+	r_id = rand(1..8)
 
 	UserRole.create(
-		user_id: userID,
+		user_id: rand(1..1500),
 		role_id: r_id,
 		name: Role.find_by(id: r_id).name,
 		years_exp: rand(1..10)
@@ -103,28 +104,28 @@ puts "UserRoles: #{UserRole.all.length}"
 puts "Creating Positions"
 
 3000.times do |i|
-	if i < 1500   
-		userNum = i 
-	else
-		userNum = i - 1500
-		puts "userNums"
-		puts userNum
-	end
+	# if i < 1500   
+	# 	userNum = i 
+	# else
+	# 	userNum = i - 1500
+	# 	puts "userNums"
+	# 	puts userNum
+	# end
 
-	if i < 150  
-		teamNum = i 
-	else
-		teamNum = i - (i/150)*150
-		puts "teamNums"
-		puts teamNum
-	end
+	# if i < 150  
+	# 	teamNum = i 
+	# else
+	# 	teamNum = i - (i/150)*150
+	# 	puts "teamNums"
+	# 	puts teamNum
+	# end
 
 	r_id = rand(1..8)
 	Position.create(
 		name: Role.find_by(id: r_id).name,
 		role_id: r_id,
-		user_id: userNum,
-		team_id: teamNum
+		user_id: rand(1..1500),
+		team_id: rand(1..150)
 	)
 end
 puts "Positions: #{Position.all.length}"
@@ -137,24 +138,24 @@ puts "No Roles:"
 noRoles = User.all.filter { 
 	|u| u.roles.count == 0 }.map { 
 	|u| u.email_address }
-puts noRoles
+puts noRoles[0,10]
 puts "---------------------------"
 puts "Roles:"
 hasRoles = User.all.filter { 
 	|u| u.roles.count > 1 }.sort.reverse.map { 
 	|u| u.email_address + " (" + u.roles.count.to_s + ")"}
-puts hasRoles
+puts hasRoles[0,10]
 puts "---------------------------"
 puts "No Teams:"
 noTeams = User.all.filter {
 	|u| u.teams.count == 0 }.map {
 	|u| u.email_address }
-puts noTeams
+puts noTeams[0,10]
 puts "---------------------------"
 puts "Has Teams:"
 hasTeams = User.all.filter {
 	|u| u.teams.count > 0 }.sort.reverse.map {
 	|u| u.email_address + " (" + u.teams.count.to_s + ")" }
-puts hasTeams
+puts hasTeams[0,10]
 puts "---------------------------"
 puts "finished"
