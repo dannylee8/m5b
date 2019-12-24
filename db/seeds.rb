@@ -23,8 +23,8 @@ Team.destroy_all
 puts "Destroying Users"
 User.destroy_all
 
-puts "Creatng Users"
-15.times do 
+puts "Creating Users"
+1500.times do 
 	name = Faker::Name.first_name
 	email = name.downcase + "@gmail.com"
 
@@ -35,8 +35,8 @@ puts "Creatng Users"
 end
 puts "Users: #{User.all.length}"
 
-puts "Creatng Teams"
-15.times do |i|
+puts "Creating Teams"
+150.times do |i|
 	Team.create(
 		name: Faker::Company.name,
 		website: Faker::Internet.domain_name,
@@ -68,10 +68,30 @@ puts "Roles: #{Role.all.length}"
 
 puts "Creating UserRoles"
 
-15.times do 
-	r_id = rand(1..8)  
+3000.times do |i|
+	if i < 1500   
+		userID = i 
+	else
+	  userID = i - 1500
+	end
+	puts "i"
+	puts i
+
+	puts "userID"
+	puts userID
+
+	if i < 1 || i % 8 == 0
+		r_id = 1
+	elsif	i < 9   
+		r_id = i 
+	else
+		r_id = i % 8
+	end
+	puts "r_id"
+	puts r_id
+
 	UserRole.create(
-		user_id: rand(1..15),
+		user_id: userID,
 		role_id: r_id,
 		name: Role.find_by(id: r_id).name,
 		years_exp: rand(1..10)
@@ -82,13 +102,29 @@ puts "UserRoles: #{UserRole.all.length}"
 
 puts "Creating Positions"
 
-15.times do
+3000.times do |i|
+	if i < 1500   
+		userNum = i 
+	else
+		userNum = i - 1500
+		puts "userNums"
+		puts userNum
+	end
+
+	if i < 150  
+		teamNum = i 
+	else
+		teamNum = i - (i/150)*150
+		puts "teamNums"
+		puts teamNum
+	end
+
 	r_id = rand(1..8)
 	Position.create(
 		name: Role.find_by(id: r_id).name,
 		role_id: r_id,
-		user_id: rand(1..15),
-		team_id: rand(1..15)
+		user_id: userNum,
+		team_id: teamNum
 	)
 end
 puts "Positions: #{Position.all.length}"
@@ -117,7 +153,7 @@ puts noTeams
 puts "---------------------------"
 puts "Has Teams:"
 hasTeams = User.all.filter {
-	|u| u.teams.count > 1 }.sort.reverse.map {
+	|u| u.teams.count > 0 }.sort.reverse.map {
 	|u| u.email_address + " (" + u.teams.count.to_s + ")" }
 puts hasTeams
 puts "---------------------------"
