@@ -8,7 +8,7 @@ class Api::V1::TeamsController < ApplicationController
 	def create
 		team = Team.create!(team_params)
 		if team.valid?
-				render json: :team
+				render json: team
 		else
 				render json: {errors: team.errors.full_messages}
 		end
