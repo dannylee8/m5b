@@ -68,7 +68,7 @@ puts "Roles: #{Role.all.length}"
 
 puts "Creating UserRoles"
 
-3000.times do |i|
+3000.times do
 	# if i < 1500   
 	# 	userID = i 
 	# else
@@ -90,13 +90,13 @@ puts "Creating UserRoles"
 	# puts "r_id"
 	# puts r_id
 	r_id = rand(1..8)
-
 	UserRole.create(
 		user_id: rand(1..1500),
 		role_id: r_id,
-		name: Role.find_by(id: r_id).name,
+		name: roles[r_id-1],
 		years_exp: rand(1..10)
 	)
+
 end
 
 puts "UserRoles: #{UserRole.all.length}"
@@ -122,7 +122,7 @@ puts "Creating Positions"
 
 	r_id = rand(1..8)
 	Position.create(
-		name: Role.find_by(id: r_id).name,
+		name: roles[r_id-1],
 		role_id: r_id,
 		user_id: rand(1..1500),
 		team_id: rand(1..150)
