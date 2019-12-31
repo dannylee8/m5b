@@ -41,7 +41,9 @@ puts "Creating Teams"
 		name: Faker::Company.name,
 		website: Faker::Internet.domain_name,
 		admin: i,
-		description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false)
+		description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+		address: Faker::Address.full_address,
+		phone: Faker::PhoneNumber.phone_number_with_country_code
 	)
 end
 puts "Teams: #{Team.all.length}"
