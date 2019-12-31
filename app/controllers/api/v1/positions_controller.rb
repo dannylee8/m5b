@@ -34,7 +34,6 @@ class Api::V1::PositionsController < ApplicationController
 		render :nothing => true, :status => 204
 	end
 
-
 	private
 
   def position_params

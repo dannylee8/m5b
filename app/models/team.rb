@@ -3,5 +3,4 @@ class Team < ApplicationRecord
 	has_many :users, through: :positions
 
 	validates :admin, presence: true
-	
 end

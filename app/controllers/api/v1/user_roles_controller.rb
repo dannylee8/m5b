@@ -18,7 +18,6 @@ class Api::V1::UserRolesController < ApplicationController
 		end
   end
   
-
 	def update
 		@userRole = UserRole.find(params[:id])
 		if @userRole.update(userRole_params)
