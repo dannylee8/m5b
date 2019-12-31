@@ -40,14 +40,30 @@ end
 puts "Teams: #{Team.all.length}"
 ##########################################
 roles = [
-	"developer",
-	"product owner",
-	"project manager",
-	"scrum master",
-	"architect",
-	"ux/ui",
-	"devops",
-	"qa"
+  'architect',
+  'back-end developer lead',
+  'back-end developer mid',
+  'business analyst',
+  'devops',
+  'devops automation architect',
+  'devops cloud architect',
+  'devops lead',
+  'devops release manager',
+  'devops site reliability engineer',
+  'devops system administrator',
+  'documentation specialist',
+  'engineering manager',
+  'front-end developer lead',
+  'front-end developer mid',
+  'product owner',
+  'project manager',
+  'qa',
+  'qa lead',
+  'scrum master',
+  'security engineer',
+  'software quality engineer',
+  'ux/ui leader',
+  'ux/ui'
 ]
 puts "Creating Roles"
 roles.each do |role|
@@ -59,7 +75,7 @@ puts "Roles: #{Role.all.length}"
 ##########################################
 puts "Creating UserRoles"
 3000.times do
-	r_id = rand(1..8)
+	r_id = rand(1..24)
 	UserRole.create(
 		user_id: rand(1..1500),
 		role_id: r_id,
@@ -71,7 +87,7 @@ puts "UserRoles: #{UserRole.all.length}"
 ##########################################
 puts "Creating Positions"
 3000.times do |i|
-	r_id = rand(1..8)
+	r_id = rand(1..24)
 	Position.create(
 		name: roles[r_id-1],
 		role_id: r_id,
