@@ -20,10 +20,11 @@ class Api::V1::PositionsController < ApplicationController
 	end
 
 	def update
+		@position = Position.find(params[:id])
 		if @position.update(position_params)
-			render json: position
+			render json: @position
 		else
-			render json: {errors: position.errors.full_messages}
+			render json: {errors: @position.errors.full_messages}
 		end
 	end
 

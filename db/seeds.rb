@@ -40,7 +40,8 @@ puts "Creating Teams"
 	Team.create(
 		name: Faker::Company.name,
 		website: Faker::Internet.domain_name,
-		admin: i
+		admin: i,
+		description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false)
 	)
 end
 puts "Teams: #{Team.all.length}"
