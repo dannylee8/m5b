@@ -8,7 +8,7 @@ class Api::V1::PositionsController < ApplicationController
 	def create
 		position = Position.create!(position_params)
 		if position.valid?
-				render json: :position
+				render json: position
 		else
 				render json: {errors: position.errors.full_messages}
 		end
