@@ -1,3 +1,3 @@
-class RoleSerializer < ActiveModel::Serializer
+class OffRoleSerializer < ActiveModel::Serializer
   attributes :id, :name
 end
