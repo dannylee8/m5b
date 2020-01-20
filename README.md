@@ -6,6 +6,13 @@
 - Rails 6.0.1
 - Pg 1.1.4
 
+### Javascript and React frontend
+- express
+- lodash
+- reactstrap
+- semantic-ui-react
+- uuid
+
 ### Demo
 - The API has been launched to heroku.
 - URL: https://devteamer.herokuapp.com
