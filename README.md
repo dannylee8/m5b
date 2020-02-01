@@ -17,11 +17,14 @@
 - The API has been launched to heroku.
 - URL: https://devteamer.herokuapp.com
 ------------
+
 ### Front end repository
 - URL: https://github.com/dannylee8/m5f
 ------------
-### Walkthrough
+
+### Walkthrough (click below to view video on YouTube)
 [![Watch the video](https://img.youtube.com/vi/_rki3cc7K0g/maxresdefault.jpg)](https://www.youtube.com/watch?v=_rki3cc7K0g)
 ------------
-###### Model diagram in UML
+
+### Model diagram in UML
 ![](./mod5.png)
