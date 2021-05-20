@@ -9,7 +9,7 @@ gem 'rails', '~> 6.0.1'
 gem 'pg', '>= 0.18', '< 2.0', group: :production
 gem 'rails_12factor', group: :production
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Use validate_email to validate user and team emails
 gem 'validate_email', '~> 0.1.6'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
